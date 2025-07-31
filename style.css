@@ -1,0 +1,17 @@
+ body {
+     font-family: 'Roboto', Arial, sans-serif;
+ }
+
+ #desktop-message {
+     display: none;
+ }
+
+ @media (min-width: 768px) {
+     #main-content {
+         display: none;
+     }
+
+     #desktop-message {
+         display: block;
+     }
+ }
